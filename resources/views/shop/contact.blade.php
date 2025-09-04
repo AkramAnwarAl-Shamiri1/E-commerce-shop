@@ -15,7 +15,8 @@
                         <a href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="{{ route('contact') }}">Contact</a>
+                      <a href="{{ route('contact') }}">contact</a>
+
                     </li>
                 </ul>
             </div>
