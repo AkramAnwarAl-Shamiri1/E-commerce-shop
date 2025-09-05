@@ -1,182 +1,172 @@
-@extends('layouts.app')
-
-@section('title', ' Contact')
-
-@section('content')
-
-    <!-- Page Introduction Wrapper -->
-    <div class="page-style-a">
-        <div class="container">
-            <div class="page-intro">
-                <h2>Contact Us</h2>
-                <ul class="bread-crumb">
-                    <li class="has-separator">
-                        <i class="ion ion-md-home"></i>
-                        <a href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="is-marked">
-                      <a href="{{ route('contact') }}">contact</a>
-
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Page Introduction Wrapper /- -->
-
-    <!-- Contact-Page -->
-    <div class="page-contact u-s-p-t-80 u-s-p-b-80">
-        <div class="container">
-            <div class="row">
-                <!-- Form -->
-                <div class="col-lg-8 col-md-12 wow fadeInLeft">
-                    <div class="contact-area u-h-100">
-                        <h3 class="mb-4"> Get in Touch</h3>
-                        <p class="u-s-m-b-30">Have questions or feedback? Fill the form below and our team will get back to you shortly.</p>
-
-                        {{-- رسائل نجاح/فشل --}}
-                        @if(session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <form method="POST" action="{{ route('contact.send') }}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="name">Full Name</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="ion ion-md-person"></i></span>
-                                        <input type="text" name="name" id="name" class="form-control" required maxlength="100" value="{{ old('name') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="ion ion-md-mail"></i></span>
-                                        <input type="email" name="email" id="email" class="form-control" required value="{{ old('email') }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="subject">Subject</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="ion ion-md-chatboxes"></i></span>
-                                    <input type="text" name="subject" id="subject" class="form-control" required maxlength="150" value="{{ old('subject') }}">
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message">Message</label>
-                                <textarea name="message" id="message" rows="6" class="form-control" required>{{ old('message') }}</textarea>
-                            </div>
-                            <button class="btn btn-primary btn-lg" type="submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Form /- -->
-
-                <!-- Contact Info -->
-                <div class="col-lg-4 col-md-12 wow fadeInRight">
-                    <div class="contact-info u-h-100 u-s-m-b-30">
-                        <h4 class="mb-3">Contact Information</h4>
-                        <p><i class="ion ion-md-pin"></i> Taiz'a, Yemen</p>
-                        <p><i class="ion ion-md-call"></i> +967 777503020</p>
-                        <p><i class="ion ion-md-mail"></i> info@example.com</p>
-                        <div class="social-media-list u-s-m-t-20">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Info /- -->
-            </div>
-
-
-
-<!-- app /- -->
-<!--[if lte IE 9]>
-<div class="app-issue">
-    <div class="vertical-center">
-        <div class="text-center">
-            <h1>You are using an outdated browser.</h1>
-            <span>This web app is not compatible with following browser. Please upgrade your browser to improve your security and experience.</span>
-        </div>
-    </div>
-</div>
-<style> #app {
-    display: none;
-} </style>
-<![endif]-->
-<!-- NoScript -->
-<noscript>
-    <div class="app-issue">
-        <div class="vertical-center">
-            <div class="text-center">
-                <h1>JavaScript is disabled in your browser.</h1>
-                <span>Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser to register for Groover.</span>
-            </div>
-        </div>
-    </div>
-    <style>
-    #app {
-        display: none;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج الاتصال</title>
+<style>
+    body {
+        font-family: Tahoma, sans-serif;
+        background-color: #f2f5f7;
+        padding: 30px;
     }
-    </style>
-</noscript>
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    .container {
+        max-width: 600px;
+        background: #fff;
+        padding: 40px 30px;
+        margin: 50px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: #333;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+    input:focus, textarea:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+    .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    button, .btn-home {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        text-align: center;
+        text-decoration: none;
+    }
+    button {
+        background-color: #28a745;
+        color: #fff;
+    }
+    button:hover {
+        background-color: #218838;
+    }
+    .btn-home {
+        background-color: #6c757d;
+        color: #fff;
+        display: inline-block;
+    }
+    .btn-home:hover {
+        background-color: #5a6268;
+    }
+    .error {
+        color: #dc3545;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .success {
+        color: #28a745;
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>نموذج الاتصال</h2>
+
+    <div id="successMsg" class="success" style="display:none;"></div>
+
+    <form id="contactForm" novalidate>
+        <label for="name">الاسم</label>
+        <input type="text" id="name" name="name" placeholder="أدخل اسمك">
+        <div class="error" id="nameError"></div>
+
+        <label for="email">البريد الإلكتروني</label>
+        <input type="text" id="email" name="email" placeholder="example@mail.com">
+        <div class="error" id="emailError"></div>
+
+        <label for="message">الرسالة</label>
+        <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+        <div class="error" id="messageError"></div>
+
+        <div class="btn-group">
+            <button type="submit">إرسال الرسالة</button>
+            <a href="{{ url('/') }}" class="btn-home">العودة للصفحة الرئيسية</a>
+        </div>
+    </form>
+</div>
+
 <script>
-window.ga = function() {
-    ga.q.push(arguments)
-};
-ga.q = [];
-ga.l = +new Date;
-ga('create', 'UA-XXXXX-Y', 'auto');
-ga('send', 'pageview')
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    document.getElementById('nameError').textContent = "";
+    document.getElementById('emailError').textContent = "";
+    document.getElementById('messageError').textContent = "";
+    document.getElementById('successMsg').style.display = "none";
+
+    let valid = true;
+
+    const name = document.getElementById('name').value.trim();
+    if(name.length < 3){
+        document.getElementById('nameError').textContent = "⚠️ الاسم يجب أن يكون 3 أحرف على الأقل";
+        valid = false;
+    }
+
+    const email = document.getElementById('email').value.trim();
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
+    if(!emailPattern.test(email)){
+        document.getElementById('emailError').textContent = "⚠️ الرجاء إدخال بريد إلكتروني صحيح";
+        valid = false;
+    }
+
+    const message = document.getElementById('message').value.trim();
+    if(message.length === 0){
+        document.getElementById('messageError').textContent = "⚠️ الرسالة مطلوبة";
+        valid = false;
+    } else if(message.length > 500){
+        document.getElementById('messageError').textContent = "⚠️ الرسالة لا يجب أن تتجاوز 500 حرف";
+        valid = false;
+    }
+
+    if(valid){
+        fetch("{{ route('contact.submit') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ name, email, message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                document.getElementById('successMsg').textContent = data.message;
+                document.getElementById('successMsg').style.display = "block";
+                document.getElementById('contactForm').reset();
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert("حدث خطأ أثناء إرسال الرسالة، حاول مرة أخرى.");
+        });
+    }
+});
 </script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
-<!-- Modernizr-JS -->
-<script type="text/javascript" src="js/vendor/modernizr-custom.min.js"></script>
-<!-- NProgress -->
-<script type="text/javascript" src="js/nprogress.min.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<!-- Popper -->
-<script type="text/javascript" src="js/popper.min.js"></script>
-<!-- ScrollUp -->
-<script type="text/javascript" src="js/jquery.scrollUp.min.js"></script>
-<!-- Elevate Zoom -->
-<script type="text/javascript" src="js/jquery.elevatezoom.min.js"></script>
-<!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="js/jquery-ui.range-slider.min.js"></script>
-<!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="js/jquery.slimscroll.min.js"></script>
-<!-- jQuery Resize-Select -->
-<script type="text/javascript" src="js/jquery.resize-select.min.js"></script>
-<!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="js/jquery.custom-megamenu.min.js"></script>
-<!-- jQuery Countdown -->
-<script type="text/javascript" src="js/jquery.custom-countdown.min.js"></script>
-<!-- Owl Carousel -->
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-<!-- Main -->
-<script type="text/javascript" src="js/app.js"></script>
+
 </body>
 </html>
-
-@endsection
-@section('scripts')
-    {{-- سكربتات إضافية خاصة بهذه الصفحة عند الحاجة --}}
-@endsection
