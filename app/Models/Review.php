@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory; // ← هذا مهم جدًا لإنشاء بيانات وهمية
+    use HasFactory; 
 
     protected $fillable = [
         'product_id',
