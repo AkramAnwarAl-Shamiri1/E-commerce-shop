@@ -45,7 +45,7 @@
 
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <!-- اختيار الفئة -->
+       
         <div class="mb-3">
             <label class="form-label">الفئة</label>
             <select name="category_id" class="form-control" required>
