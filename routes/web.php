@@ -4,12 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 
-// الصفحة الرئيسية
-Route::get('/', function () {
-    return view('shop.home');  // ملف home.blade.php
-})->name('home');
 
-// Product CRUD routes
+Route::get('/', function () {
+    return view('shop.home');  
+
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
     Route::get('/create', [ProductController::class, 'create'])->name('products.create');
