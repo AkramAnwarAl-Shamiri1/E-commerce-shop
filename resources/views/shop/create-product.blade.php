@@ -31,9 +31,6 @@
 </head>
 <body>
 <div class="container">
-    <!-- زر العودة للصفحة الرئيسية -->
-   
-    
     <h2>إنشاء منتج جديد</h2>
 
     @if ($errors->any())
@@ -48,30 +45,49 @@
 
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <!-- اختيار الفئة -->
+        <div class="mb-3">
+            <label class="form-label">الفئة</label>
+            <select name="category_id" class="form-control" required>
+                <option value="">اختر فئة</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}"
+                        {{ (old('category_id') ?? '') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="mb-3">
             <label class="form-label">اسم المنتج</label>
             <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
+
         <div class="mb-3">
             <label class="form-label">الوصف</label>
             <textarea name="description" class="form-control">{{ old('description') }}</textarea>
         </div>
+
         <div class="mb-3">
             <label class="form-label">السعر</label>
             <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price', 0) }}" required>
         </div>
+
         <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" name="on_sale" id="on_sale">
+            <input class="form-check-input" type="checkbox" name="on_sale" id="on_sale" {{ old('on_sale') ? 'checked' : '' }}>
             <label class="form-check-label" for="on_sale">على الخصم</label>
         </div>
+
         <div class="mb-3">
             <label class="form-label">صورة المنتج</label>
             <input type="file" name="image" class="form-control">
         </div>
+
         <div class="mb-3 d-flex gap-2">
-    <button type="submit" class="btn btn-success flex-fill">حفظ المنتج</button>
-    <a href="{{ url('/') }}" class="btn btn-secondary flex-fill">العودة للصفحة الرئيسية</a>
-</div>
+            <button type="submit" class="btn btn-success flex-fill">حفظ المنتج</button>
+            <a href="{{ url('/') }}" class="btn btn-secondary flex-fill">العودة للصفحة الرئيسية</a>
+        </div>
 
     </form>
 </div>

@@ -46,35 +46,60 @@
         </div>
     @endif
 
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label">اسم المنتج</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">الوصف</label>
-            <textarea name="description" class="form-control">{{ old('description') }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">السعر</label>
-            <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price', 0) }}" required>
-        </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" name="on_sale" id="on_sale">
-            <label class="form-check-label" for="on_sale">على الخصم</label>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">صورة المنتج</label>
-            <input type="file" name="image" class="form-control">
-        </div>
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 
-        <!-- أزرار جنب بعض بنفس الحجم -->
-        <div class="mb-3 d-flex gap-2">
-            <button type="submit" class="btn btn-success">حفظ المنتج</button>
-            <a href="{{ url('/') }}" class="btn btn-secondary">العودة للصفحة الرئيسية</a>
+    <!-- اختيار الفئة -->
+    <div class="mb-3">
+        <label class="form-label">الفئة</label>
+        <select name="category_id" class="form-control" required>
+            <option value="">اختر فئة</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}"
+                    {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">اسم المنتج</label>
+        <input type="text" name="name" class="form-control" 
+               value="{{ old('name', $product->name) }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">الوصف</label>
+        <textarea name="description" class="form-control">{{ old('description', $product->description) }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">السعر</label>
+        <input type="number" step="0.01" name="price" class="form-control" 
+               value="{{ old('price', $product->price) }}" required>
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="on_sale" id="on_sale"
+               {{ old('on_sale', $product->on_sale) ? 'checked' : '' }}>
+        <label class="form-check-label" for="on_sale">على الخصم</label>
+    </div>
+
+    @if($product->image)
+        <div class="mb-3">
+            <img src="{{ asset('storage/' . $product->image) }}" alt="صورة المنتج" class="img-thumbnail" width="150">
         </div>
-    </form>
-</div>
-</body>
-</html>
+    @endif
+
+    <div class="mb-3">
+        <label class="form-label">صورة المنتج</label>
+        <input type="file" name="image" class="form-control">
+    </div>
+
+    <div class="mb-3 d-flex gap-2">
+        <button type="submit" class="btn btn-success">تحديث المنتج</button>
+        <a href="{{ url('/') }}" class="btn btn-secondary">العودة للصفحة الرئيسية</a>
+    </div>
+</form>
