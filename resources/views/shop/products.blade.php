@@ -24,9 +24,12 @@
         @forelse($products as $product)
             <div class="col-md-4">
                 <div class="card mb-3 h-100">
-                    @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
-                    @endif
+                   
+ @if($product->image)
+    <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+@endif
+
+
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="card-text">{{ Str::limit($product->description, 100) }}</p>

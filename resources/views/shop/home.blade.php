@@ -45,8 +45,9 @@
             <div class="col-md-3 mb-4">
                 <div class="card product-card h-100">
                     @if($product->image)
-                        <img src="{{ asset('storage/'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
-                    @else
+                           <img src="{{ asset('storage/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+@else
+
                         <img src="https://via.placeholder.com/300x150?text=No+Image" class="card-img-top" alt="لا توجد صورة">
                     @endif
                     <div class="card-body d-flex flex-column">
