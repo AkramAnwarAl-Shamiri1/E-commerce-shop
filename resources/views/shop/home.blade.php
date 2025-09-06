@@ -3939,5 +3939,5 @@ ga('send', 'pageview')
 </html>
 @endsection
 @section('scripts')
-    {{-- سكربتات إضافية خاصة بهذه الصفحة عند الحاجة --}}
+
 @endsection
