@@ -123,23 +123,23 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     const name = document.getElementById('name').value.trim();
     if(name.length < 3){
-        document.getElementById('nameError').textContent = "⚠️ الاسم يجب أن يكون 3 أحرف على الأقل";
+        document.getElementById('nameError').textContent = " الاسم يجب أن يكون 3 أحرف على الأقل";
         valid = false;
     }
 
     const email = document.getElementById('email').value.trim();
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
     if(!emailPattern.test(email)){
-        document.getElementById('emailError').textContent = "⚠️ الرجاء إدخال بريد إلكتروني صحيح";
+        document.getElementById('emailError').textContent = " الرجاء إدخال بريد إلكتروني صحيح";
         valid = false;
     }
 
     const message = document.getElementById('message').value.trim();
     if(message.length === 0){
-        document.getElementById('messageError').textContent = "⚠️ الرسالة مطلوبة";
+        document.getElementById('messageError').textContent = " الرسالة مطلوبة";
         valid = false;
     } else if(message.length > 500){
-        document.getElementById('messageError').textContent = "⚠️ الرسالة لا يجب أن تتجاوز 500 حرف";
+        document.getElementById('messageError').textContent = "الرسالة لا يجب أن تتجاوز 500 حرف";
         valid = false;
     }
 
