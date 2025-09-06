@@ -4,11 +4,11 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Category; // تأكد من استيراد الموديل
+use App\Models\Category;
 
 class CategoryFactory extends Factory
 {
-    protected $model = Category::class; // ← هذا مهم
+    protected $model = Category::class; 
 
     public function definition(): array
     {
