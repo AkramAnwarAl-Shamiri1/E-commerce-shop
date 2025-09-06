@@ -38,8 +38,7 @@ class StoreController extends Controller
         'message' => 'required',
     ]);
 
-    // هنا يمكنك إرسال الإيميل أو حفظ البيانات في قاعدة البيانات
-    // على سبيل المثال، مجرد رسالة نجاح مؤقتة:
+ 
     return back()->with('success', 'Your message has been sent successfully!');
 }
 
