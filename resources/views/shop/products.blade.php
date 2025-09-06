@@ -657,5 +657,5 @@ ga('send', 'pageview')
 
 @endsection
 @section('scripts')
-    {{-- سكربتات إضافية خاصة بهذه الصفحة عند الحاجة --}}
+  
 @endsection
