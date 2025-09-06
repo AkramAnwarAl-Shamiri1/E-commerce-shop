@@ -1,12 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 
-// الصفحة الرئيسية
+
 Route::get('/', function () {
-    return view('shop.home');  // ملف home.blade.php
+    return view('shop.home'); 
 })->name('home');
 
 // Product CRUD routes
