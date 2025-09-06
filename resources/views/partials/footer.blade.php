@@ -1,6 +1,5 @@
 
-    <!-- Site-Priorities /- -->
-    <!-- Footer -->
+  
     <footer class="footer">
         <div class="container">
             <!-- Outer-Footer -->
@@ -20,8 +19,7 @@
                     <button type="submit" class="button">SUBMIT</button>
                 </form>
             </div>
-            <!-- Outer-Footer /- -->
-            <!-- Mid-Footer -->
+       
             <div class="mid-footer-wrapper u-s-p-b-80">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -98,8 +96,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Mid-Footer /- -->
-            <!-- Bottom-Footer -->
+          
             <div class="bottom-footer-wrapper">
                 <div class="social-media-wrapper">
                     <ul class="social-media-list">
@@ -144,5 +141,5 @@
                     <a href="home.html">Groover</a> All Right Reserved</p>
             </div>
         </div>
-        <!-- Bottom-Footer /- -->
+      
     </footer>
