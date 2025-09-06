@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory; // مهم جدًا لاستخدام Factories والـ Seeders
+    use HasFactory;
 
-    // الحقول التي يمكن ملؤها مباشرة
+
     protected $fillable = [
         'category_id',
         'name',
@@ -20,13 +20,13 @@ class Product extends Model
         'image',
     ];
 
-    // علاقة المنتج بالفئة
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    // علاقة المنتج بالمراجعات (اختياري، إذا تريد استخدام Reviews)
+   
     public function reviews()
     {
         return $this->hasMany(Review::class);
