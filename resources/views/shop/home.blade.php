@@ -26,7 +26,7 @@
 </head>
 <body class="bg-light">
 
-<!-- بانر ترحيبي -->
+
 <div class="banner">
     <div class="text-center">
         <h1>مرحباً بك في متجرنا الإلكتروني</h1>
@@ -38,7 +38,7 @@
 </div>
 
 <div class="container py-5">
-    <!-- أحدث المنتجات -->
+  
     <h2 class="mb-4">أحدث المنتجات</h2>
     <div class="row">
         @foreach(\App\Models\Product::latest()->take(4)->get() as $product)
