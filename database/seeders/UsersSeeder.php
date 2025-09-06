@@ -9,7 +9,7 @@ class UsersSeeder extends Seeder
 {
     public function run()
     {
-        // Seed an admin user and some regular users
+        
         User::factory()->count(10)->create();
     }
 }
