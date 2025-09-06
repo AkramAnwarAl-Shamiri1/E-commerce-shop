@@ -3,7 +3,7 @@
 @section('title', 'cart')
 
 @section('styles')
-    {{-- CSS إضافي للصفحة الرئيسية --}}
+
     {{-- <link rel="stylesheet" href="{{ asset('css/home.css') }}"> --}}
 @endsection
 
@@ -383,5 +383,5 @@ ga('send', 'pageview')
 
 @endsection
 @section('scripts')
-    {{-- سكربتات إضافية خاصة بهذه الصفحة عند الحاجة --}}
+
 @endsection
